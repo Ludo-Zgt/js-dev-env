@@ -118,7 +118,7 @@ On ajoute un script npm `prestart`.
 ```
 ## Transpilling
 Créer un fichier `.babelrc` à la racine du projet.
-```
+```json
 {
 	"presets": [
 		"latest"
@@ -126,7 +126,7 @@ Créer un fichier `.babelrc` à la racine du projet.
 }
 ```
 Ajouter le préfixe `babel-` devant les commandes `node` des scripts npm.
-```
+```json
 "prestart": "babel-node buildScripts/startMessage.js",
 "start": "babel-node buildScripts/srcServer.js",
 ```
@@ -166,15 +166,54 @@ export default {
 }
 ```
 Intégrer webpack au serveur de développement.
-```
+```javascript
 import webpack from 'webpack';
 import config from ' ../webpack.config.dev';
-...
+//...
 const compiler = webpack(config);
-...
+//...
 app.use(require('webpack-dev-middleware')(compiler, {
 	noInfo: true,
 	publicPath: config.output.publicPath
 }));
 ```
+### Create App Entry Point
+Créer un fichier `ìndex.js` dans le repertoire `src`.
+```javascript
+import numeral from 'numeral';
 
+const courseValue = numeral(15000).format('$0,0..00');
+console.log(`I would pay ${courseValue} for this awesome car!`);
+```
+Ajouter le script `bundle.js` à la fin du `body` de `index.html`. Lancer le serveur et ouvrir la console. Le message doit s'afficher.
+### Handling CSS
+Créer un fichier `index.css` dans le repertoire `src`.
+```CSS
+body{
+	font-family: San-Serif;
+}
+
+table th {
+	padding: 5px;
+}
+```
+Et ajouter la ligne suivante au fichier `index.js`.
+```javascript
+import './index.css';
+```
+### Debugging viaScourcemaps
+En utilisant Babel et Webpack le javascript interprété par le navigateur est notre code transpilé et 'bundlé'. C'est pourquoi il faut utiliser Sourcemaps.
+Dans le fichier `webpack.config.dev.js` nous avons déjà intégré Sourcemaps.
+```json
+//...
+devtool: 'inline-source-map',
+//...
+```
+Voir plus [ici](http://https://webpack.js.org/configuration/devtool/#devtool "ici").
+Ajouter un breakpoint dans le script `index.js`.
+```javascript
+const courseValue = numeral(15000).format('$0,0..00');
+debugger;
+console.log(`I would pay ${courseValue} for this awesome car!`);
+```
+Lancer le dev server et debugger avec l'outil de debuggage de Chrome. Dans `Source` et `index`. Rafraichir la page.
