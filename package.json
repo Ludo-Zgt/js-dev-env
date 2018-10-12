@@ -5,6 +5,8 @@
   "scripts": {
 			"prestart": "babel-node buildScripts/startMessage.js",
 			"start": "babel-node buildScripts/srcServer.js",
+			"lint": "esw webpack.config.* src buildScripts --color",
+			"lint:watch": "npm run lint -- --watch",
 			"localtunnel": "lt --port 3000",
 			"share": "npm-run-all --parallel start localtunnel"
 		},

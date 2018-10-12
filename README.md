@@ -217,3 +217,36 @@ debugger;
 console.log(`I would pay ${courseValue} for this awesome car!`);
 ```
 Lancer le dev server et debugger avec l'outil de debuggage de Chrome. Dans `Source` et `index`. Rafraichir la page.
+### Linting
+Créer un fichier `.eslintrc.json` à la racine du projet. Coller le contenu suivant :
+```json
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module"
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+		"no-console": 1
+  }
+}
+```
+Ajouter les lignes suivantes dans les scripts de `package.json`.
+```json
+"lint": "esw webpack.config.* src buildScripts",
+"lint:watch": "npm run lint -- --watch",
+```
+Lancer le script : 
+```
+npm run lint:watch
+```
