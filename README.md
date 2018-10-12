@@ -1,13 +1,13 @@
-# Environnement de développement JS
+# JS Development environment
 Mise en place d'un environnement de développement JavaScript.
 Pluralsight Course with Cory House.
 ## .editorconfig
 Ajouter un fichier `.editorconfig` à la racine du dossier et y mettre ses règles (voir des exemples sur [ici](https://editorconfig.org/#example-file "ici")).
 Télécharger le plugin editorconfig sur [editorconfig.org](https://editorconfig.org/#download "editorconfig.org") pour son éditeur.
 Maintenant `.editorconfig` va appliquer les règles aux future fichiers.
-## Node et les packages npm
+## Node & npm
 Pour installer Node, il faut se rendre sur le site [nodejs.org](https://nodejs.org/en/ "nodejs.org").
-### Exemple installation des packages Webpack
+### Example : Set up Webpack
 Avant de pouvoir installer des packages il faut initialiser le projet. Alors, on lance :
 ```
 npm init
@@ -19,7 +19,7 @@ npm install webpack --save-dev
 ```
 A noter ici que le suffix `--save-dev` permet d'indiquer que le package webpack, est un package pour le developpemnt uniquement. Nous n'en aurons pas besoin pour la production.
 Si on regarde de nouveau notre fichier `package.json` les dependences (packages) utilisés y figurent. Voir plus d'informations [ici](https://www.youtube.com/watch?v=GU-2T7k9NfI "ici").
-### Package.json Starter Kit
+### package.json Starter Kit
 Pour simplifier l'installation de tous les packages, on créer un fichier `package.json` à la racine du projet. Et on copie le fichier [package.json](http://https://gist.github.com/coryhouse/29bd1029b623beb4c7f79b748dcba844 "package.json") suivant.
 
 Il est possible de jeter un oeuil à la documentation pour comprendre la structure du fichier [ici](http:/https://docs.npmjs.com/files/package.json#devdependencies/ "ici").
@@ -28,7 +28,7 @@ Il est possible de jeter un oeuil à la documentation pour comprendre la structu
      npm install
  
  Attention ce fichier n'est pas totalemnt à jour. Donc il sera nécessaire de faire des `fix`.
-## Serveur Web de Développement
+## Development Web Server
 ### Express
 Créer un dossier `buildScripts` à la racine du projet. Dans ce dossier créer un fichier `srcServer.js`.
 Coller le code suivant :
@@ -80,8 +80,8 @@ Il est possible de choisir un sous-domaine.
 lt --port 3000 --subdomain myenvdev
 >your url is: http://myenvdev.localtunnel.me
 ```
-## Autamatisation
-### Scripts npm
+## Automation
+### npm Scripts
 Dans la section `scripts` du fichier `package.json` il est possible de créer des scripts npm.
 ```json
 "scripts": {
@@ -107,8 +107,8 @@ On ajoute un script npm `prestart`.
 			"start": "node buildScrips/srcServer.js"
 }
 ```
-### Tâches concurrentes
-```
+### Concurrent Tasks
+```json
 "scripts": {
 			"prestart": "node buildScripts/startMessage.js",
 			"start": "node buildScripts/srcServer.js",
@@ -116,3 +116,18 @@ On ajoute un script npm `prestart`.
 			"share": "npm-run-all --parallel start localtunnel"
 		}
 ```
+## Transpilling
+Créer un fichier `.babelrc` à la racine du projet.
+```
+{
+	"presets": [
+		"latest"
+	]
+}
+```
+Ajouter le préfixe `babel-` devant les commandes `node` des scripts npm.
+```
+"prestart": "babel-node buildScripts/startMessage.js",
+"start": "babel-node buildScripts/srcServer.js",
+```
+Il est maintenat de possible d'utiliser les fonctionnalitées de ES6.
