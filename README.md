@@ -271,4 +271,10 @@ npm t
 ```
 ### Travis CI
 Aller sur le site [Travis CI](http://https://travis-ci.org/ "Travis CI").
-Lire la documentation [*Getting Started*](http://https://docs.travis-ci.com/user/getting-started/ "*Getting Started*").
+Lire la documentation [*Getting Started*](http://https://docs.travis-ci.com/user/getting-started/ "*Getting Started*"). Travis tourne sous **Linux**.
+Créer un fichier `.travis.yml` à la racine du projet.
+```
+language: node_js
+node_js:
+		-"6"
+```
