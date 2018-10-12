@@ -107,3 +107,12 @@ On ajoute un script npm `prestart`.
 			"start": "node buildScrips/srcServer.js"
 }
 ```
+### Tâches concurrentes
+```
+"scripts": {
+			"prestart": "node buildScripts/startMessage.js",
+			"start": "node buildScripts/srcServer.js",
+			"localtunnel": "lt --port 3000",
+			"share": "npm-run-all --parallel start localtunnel"
+		}
+```
