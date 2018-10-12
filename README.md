@@ -201,7 +201,7 @@ Et ajouter la ligne suivante au fichier `index.js`.
 ```javascript
 import './index.css';
 ```
-### Debugging viaScourcemaps
+### Debugging via Scourcemaps
 En utilisant Babel et Webpack le javascript interprété par le navigateur est notre code transpilé et 'bundlé'. C'est pourquoi il faut utiliser Sourcemaps.
 Dans le fichier `webpack.config.dev.js` nous avons déjà intégré Sourcemaps.
 ```json
@@ -217,7 +217,7 @@ debugger;
 console.log(`I would pay ${courseValue} for this awesome car!`);
 ```
 Lancer le dev server et debugger avec l'outil de debuggage de Chrome. Dans `Source` et `index`. Rafraichir la page.
-### Linting
+## Linting
 Créer un fichier `.eslintrc.json` à la racine du projet. Coller le contenu suivant :
 ```json
 {
