@@ -243,10 +243,28 @@ Créer un fichier `.eslintrc.json` à la racine du projet. Coller le contenu sui
 ```
 Ajouter les lignes suivantes dans les scripts de `package.json`.
 ```json
+"start": "babel-node buildScripts/srcServer.js lint:watch",
 "lint": "esw webpack.config.* src buildScripts",
 "lint:watch": "npm run lint -- --watch",
 ```
 Lancer le script : 
 ```
 npm run lint:watch
+```
+## Testing and Continiuous Integration
+Créer un fichier `testSetup.js` dans le répertoire `buildScripts`.
+```javascript
+require('babel-register')();
+require.extensions['.css'] = function() {};
+```
+Et ajouter le script de test au fichier `package.json`.
+```json
+"start": "babel-node buildScripts/srcServer.js lint:watch test:watch",
+//...
+"test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\""
+"test:watch": "npm run test -- --watch"
+```
+Pour lancer les tests.
+```
+npm t
 ```
