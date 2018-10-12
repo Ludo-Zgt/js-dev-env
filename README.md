@@ -24,14 +24,15 @@ Pour simplifier l'installation de tous les packages, on créer un fichier `packa
 
 Il est possible de jeter un oeuil à la documentation pour comprendre la structure du fichier [ici](http:/https://docs.npmjs.com/files/package.json#devdependencies/ "ici").
  Pour lancer l'intallation des packages :
- ```
- npm install
- ```
+
+     npm install
+ 
  Attention ce fichier n'est pas totalemnt à jour. Donc il sera nécessaire de faire des `fix`.
-## Express un Serveur Web de Développement
+## Serveur Web de Développement
+### Express
 Créer un dossier `buildScripts` à la racine du projet. Dans ce dossier créer un fichier `srcServer.js`.
 Coller le code suivant :
-```
+```javascript
 var express = require('express');
 var path = require('path');
 var open = require('open');
@@ -53,5 +54,56 @@ app.listen(port, function(err) {
 ```
 Créer un dossier `src` à la racine du projet. dans ce dossier créer un fichier `index.html`. Dans ce fichier taper `!` et l'éditeur de texte propose automatiquement un boilerplate html. Appuyer sur la touche `Entrer`. Rajouter une balise `p` avec un `lorem`.
 
-Lancer la commande suivante :
-`node buildScripts/srcServer.js`
+Pour lancer le serveur tapper la commande suivante :
+
+    node buildScripts/srcServer.js
+### Localtunnel
+Localtunnel nous permet d'accéder à notre Dev web server à partir d'une URL HTTP.
+C'est très utile lorsque l'on souhaite partager l'avancement du projet ou faire des testes sur différentes cibles. Il est alors possible de visualiser le site ç partir d'un smartphone.
+Installer les packages localtunnel.
+```
+npm install localtunnel -g
+```
+Lancer le serveur.
+```
+node buildScripts/srcServer.js
+```
+Ouvrir un autre terminal. et lancer localtunnel qui va faire un tunnel sur le port de notre serveur de développement (3000).
+```
+lt --port 3000
+>your url is: http://nnxbcogcik.localtunnel.me
+```
+Ce qui nous retourne une URL random.
+
+Il est possible de choisir un sous-domaine.
+```
+lt --port 3000 --subdomain myenvdev
+>your url is: http://myenvdev.localtunnel.me
+```
+## Autamatisation
+### Scripts npm
+Dans la section `scripts` du fichier `package.json` il est possible de créer des scripts npm.
+```json
+"scripts": {
+			"start": "node buildScrips/srcServer.js"
+}
+```
+Maintenant pour lancer le serveur il suffit de tapper la commande suivante :
+```
+npm start
+```
+### Pre/Post Hooks
+Créer un fichier `startMessage.js` dans le dossier `buildScripts` avec le contenue suivant :
+```javascript
+//With the chalk librairie we can display the message in color.
+var chalk = require('chalk');
+
+console.log(chalk.green('Starting app in dev mode...'));
+```
+On ajoute un script npm `prestart`.
+```json
+"scripts": {
+			"prestart": "node buildScripts/startMessage.js",
+			"start": "node buildScrips/srcServer.js"
+}
+```
