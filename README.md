@@ -130,4 +130,51 @@ Ajouter le préfixe `babel-` devant les commandes `node` des scripts npm.
 "prestart": "babel-node buildScripts/startMessage.js",
 "start": "babel-node buildScripts/srcServer.js",
 ```
-Il est maintenat de possible d'utiliser les fonctionnalitées de ES6.
+Il est maintenant de possible d'utiliser les fonctionnalitées de ES6.
+## Bundling
+### Configuring Webpack
+Créer un fichier `webpack.config.dev.js` à la racine du projet.
+Copier/ Coller le code [ici](http://https://gist.github.com/coryhouse/d611e83e432f3ae65cc46ebb9b599930 "ici").
+```javascript
+
+import path from 'path';
+
+export default {
+	//enable some debugging information
+  debug: true,
+  devtool: 'inline-source-map',
+	noInfo: false,
+	//Entry point of our app
+  entry: [
+    path.resolve(__dirname, 'src/index')
+  ],
+	target: 'web',
+	//Here we tell webpack where it should create(simulate) our bundle
+  output: {
+    path: path.resolve(__dirname, 'src'),
+    publicPath: '/',
+    filename: 'bundle.js'
+	},
+	//We will add plugins here
+  plugins: [],
+  module: {
+    loaders: [
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      {test: /\.css$/, loaders: ['style','css']}
+    ]
+  }
+}
+```
+Intégrer webpack au serveur de développement.
+```
+import webpack from 'webpack';
+import config from ' ../webpack.config.dev';
+...
+const compiler = webpack(config);
+...
+app.use(require('webpack-dev-middleware')(compiler, {
+	noInfo: true,
+	publicPath: config.output.publicPath
+}));
+```
+
