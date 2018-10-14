@@ -276,6 +276,6 @@ Créer un fichier `.travis.yml` à la racine du projet.
 ```
 language: node_js
 node_js:
-		-"6"
+  - "iojs"
+  - "7"
 ```
->>>>>>> parent of 3a4673a... Fix Travis (WIP)
