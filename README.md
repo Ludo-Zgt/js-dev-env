@@ -276,6 +276,5 @@ Créer un fichier `.travis.yml` à la racine du projet.
 ```
 language: node_js
 node_js:
-  - "iojs"
   - "7"
 ```
