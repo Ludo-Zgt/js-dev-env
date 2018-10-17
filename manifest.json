@@ -1,0 +1,20 @@
+{
+  "short_name": "ALTESSE Mobile",
+  "name": "ALTESSE mobile",
+  "icons": [
+    {
+      "src": "/profoundui/userdata/genie skins/ALT_Mobile/images/LOGO_GEODIS_ECRAN_VERTICAL_BLANC.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/profoundui/userdata/genie skins/ALT_Mobile/images/LOGO_GEODIS_ECRAN_VERTICAL_BLANC.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/profoundui/genie?skin=ALT_Mobile",
+  "background_color": "#3200e6",
+  "display": "fullscreen",
+  "theme_color": "#3200e6"
+}
