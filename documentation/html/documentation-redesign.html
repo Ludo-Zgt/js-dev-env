@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/pilcrow.css" />
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+<body>
+
+  <div id="toc">
+    <div id="toc-inner"><ul class="nav nav-list">
+    <li class="sidebar-header-1"><a href="#altesse-mobile---modern-ui-design">ALTESSE MOBILE - Modern UI Design</a></li>
+    <li class="sidebar-header-2"><a href="#profoud-ui">Profoud UI</a></li>
+    <li class="sidebar-header-3"><a href="#introduction">Introduction</a></li>
+    <li class="sidebar-header-4"><a href="#strengths-and-weaknesses-analysis">Strengths and weaknesses analysis</a></li>
+    <li class="sidebar-header-3"><a href="#custom-the-web-app">Custom the Web App</a></li>
+    <li class="sidebar-header-3"><a href="#generated-dom">Generated DOM</a></li>
+    <li class="sidebar-header-2"><a href="#responsive-ui">Responsive UI</a></li>
+    <li class="sidebar-header-3"><a href="#css-frameworks">CSS Frameworks</a></li>
+    <li class="sidebar-header-3"><a href="#absolute-to-static-positioning">Absolute to static positioning</a></li>
+</ul>
+    </div>
+  </div>
+
+  <div id="wrapper">
+    <div id="header">
+
+    </div>
+
+    <div class="clear"></div>
+    <div id="main">
+      <div id="content" class="post"><h1 id="altesse-mobile---modern-ui-design"><a class="header-link" href="#altesse-mobile---modern-ui-design"></a>ALTESSE MOBILE - Modern UI Design</h1>
+<h2 id="profoud-ui"><a class="header-link" href="#profoud-ui"></a>Profoud UI</h2>
+<h3 id="introduction"><a class="header-link" href="#introduction"></a>Introduction</h3>
+<p>Profound UI is a toolkit able to transform an AS/400 green screen into a web application.
+Unfortunatly, Profound UI can&#39;t generate a modern and responsive web app.</p>
+<h4 id="strengths-and-weaknesses-analysis"><a class="header-link" href="#strengths-and-weaknesses-analysis"></a>Strengths and weaknesses analysis</h4>
+<p>Strength :</p>
+<ul class="list">
+<li>Able to transform an AS/400 green screen into a web application.</li>
+</ul>
+<p>Weakness :</p>
+<ul class="list">
+<li>HTML elements have absolute positions. We can&#39;t make responsive UI with absolute positionnig ;</li>
+<li>Limited variety of HTML elements. We can&#39;t properly design HTML elements. For exemple we can&#39;t put an element in another element.</li>
+<li>Maintenance : When an AS/400 screen has changed, it&#39;s necessary to take care about this new updates on the corresponding generated web page. We must define the absolute positionning of new elements.</li>
+</ul>
+<h3 id="custom-the-web-app"><a class="header-link" href="#custom-the-web-app"></a>Custom the Web App</h3>
+<p>As we said Ptofound UI generate a Web App from the AS/400 screens. The generated Web App is a Single Page Application (SPA).
+The generating process is a Profound Logic&#39;s property which is located in the <code>./proddata</code> file. We will not touch this files.</p>
+<p>The folowing files can be customized :</p>
+<ul class="list">
+<li><code>start.html</code></li>
+<li><code>Mobile_v2.css</code></li>
+<li><code>custom.js</code></li>
+<li><code>name_page.scn</code></li>
+</ul>
+<p>The <code>name_page.scn</code> file is located in the <code>./screens</code> repository, is a JSON file. This file contains all DOM elements and their attributes in a JSON format. This file store all customizations added to elements from the Designer mode. When running the app, Profound Genie will generate HTML from this file. The generated HTML will be implemented into the <code>&lt;div&gt;</code> with the<code>id=&quot;5250&quot;</code> in <code>start.html</code>.</p>
+<pre class="hljs"><code><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"main"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"contain5250"</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"5250"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"genie container-fluid"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span></code></pre><p>In the <code>custom.js</code> file we override the <code>afterLoad()</code> function.</p>
+<blockquote>
+<p>afterLoad() is a special function that allows you to customize a Genie screen after the screen has been rendered and all designer enhancements have been applied.  If defined, it will be called for every Genie screen.</p>
+</blockquote>
+<p>In the <code>afterLoad()</code> function we can <strong>manipulate the DOM</strong> to obtain a modern and responsive Web App.</p>
+<h3 id="generated-dom"><a class="header-link" href="#generated-dom"></a>Generated DOM</h3>
+<h2 id="responsive-ui"><a class="header-link" href="#responsive-ui"></a>Responsive UI</h2>
+<h3 id="css-frameworks"><a class="header-link" href="#css-frameworks"></a>CSS Frameworks</h3>
+<p>In this project two CSS Framework are used :</p>
+<ul class="list">
+<li><a href="https://getbootstrap.com/" title="Bootstrap">Bootstrap</a></li>
+<li><a href="https://fontawesome.com/" title="Fontawesome">Fontawesome</a></li>
+</ul>
+<p>Bootstrap is used for make responsive UI and make the front-end development easier.
+Fontawesome it&#39;s an icon toolkit wich provide vector icons.</p>
+<p>For implement these two frameworks to the project, we just have to inject this two lines in the <code>&lt;header&gt;</code> of the <code>start.html</code> file.</p>
+<pre class="hljs"><code><span class="hljs-comment">&lt;!-- Bootstrap --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">"anonymous"</span>&gt;</span>
+<span class="hljs-comment">&lt;!-- Fontawesome --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">defer</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"https://use.fontawesome.com/releases/v5.4.1/js/all.js"</span> <span class="hljs-attr">integrity</span>=<span class="hljs-string">"sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7"</span> <span class="hljs-attr">crossorigin</span>=<span class="hljs-string">"anonymous"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><h3 id="absolute-to-static-positioning"><a class="header-link" href="#absolute-to-static-positioning"></a>Absolute to static positioning</h3>
+<p>Full absolute positionnig and responsive can&#39;t live together. The positionning must be static. But due to the CSS precedence we can&#39;t just apply the static positionning in the <code>Mobile_v2.css</code> file. So we need to manipulate the DOM with Javascript. In order to reduce the verbose we use <strong>jQuery</strong>.</p>
+<p>We can manipulate the DOM into the <code>afterLoad()</code> function. We already saw this function in the <em>General Web App</em> part.</p>
+      </div>
+    </div>
+
+    <div class="clear">
+    </div>
+
+    <div id="footer">
+    </div>
+  </div>
+</body>
+</html>

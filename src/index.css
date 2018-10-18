@@ -1,7 +1,49 @@
 body{
-	font-family: Sans-Serif;
+	padding-top: 150px;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
-table th {
-	padding: 5px;
+.navbar {
+	margin-bottom: 55px;
+	padding: 0;
+	background-color: #575757;
+}
+.navbar-header {
+	position: relative;
+	float: left;
+	padding-bottom: 50px;
+	text-align: center;
+	width: 100%;
+}
+.navbar-brand {
+	float:none;
+	margin-right: 0;
+
+}
+.banner-info {
+	position: absolute;
+	height: 100px;
+	top: 50px;
+	width: 100%;
+}
+.info{
+	margin: auto;
+	height: 90px;
+	width: 90%;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 90px;
+	color: #fff;
+	background-color: #8075FF;
+}
+.row {
+	margin-right: 0px;
+	margin-left: 0px;
+}
+.list-group-item {
+	padding-right: 0;
+	padding-left: 0;
+}
+.fa-container {
+	text-align: center;
 }
